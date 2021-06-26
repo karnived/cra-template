@@ -1,6 +1,31 @@
 {
   "name": "cra-template",
   "version": "0.1.0",
+  "license": "MIT",
+  "author": "Fernando Adad <feradad.dev@gmail.com",
+  "main": "template.json",
+  "description": "A quick start CRA Template for custom React projects along with Typescript and ESLint configurations",
+  "keywords": [
+    "react",
+    "create-react-app",
+    "cra-template",
+    "template",
+    "typescript",
+    "eslint",
+    "lint-staged",
+    "husky",
+    "prettier"
+  ],
+  "files": [
+    "template",
+    "template.json",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "",
+    "directory": "/"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -22,7 +47,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "check-types": "tsc --noEmit --noUnusedLocals"
+    "check-types": "tsc --noEmit --noUnusedLocals",
+    "pre-publish": "npm run template:clean && npm run template:build",
+    "template:clean": "rm -r template && mkdir template",
+    "template:build": "npm run template:git && npm run template:folders && npm run template:config",
+    "template:git": "cp .gitignore template/gitignore",
+    "template:folders": "cp -a ./src/. template/src && cp -a ./public/. template/public",
+    "template:config": "cp .eslintrc.json .eslintignore .lintstagedrc.json tsconfig.json .prettierrc.json .prettierignore README.md template/"
   },
   "browserslist": {
     "production": [
